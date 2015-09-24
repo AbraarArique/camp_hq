@@ -1,0 +1,9 @@
+- content_for :title do
+  %title Edit Task - #{@user.name} | CampHQ
+
+.row
+  .small-12.columns
+    %h1.text-center Edit Task: #{@task.name}
+    %h2.text-center= @user.name
+  .small-12.columns
+    = render 'form'

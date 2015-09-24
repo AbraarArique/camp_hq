@@ -1,0 +1,15 @@
+= form_for @task, url: flash[:url] do |f|
+  - if @task.errors.any?
+    .alert-box.alert.radius
+      %p= pluralize(@task.errors.count, "Error")
+      %ul
+        - @task.errors.full_messages.each do |i|
+          %li= i
+      %a.close{href: "#"} Close
+  = f.label :name
+  = f.text_field :name
+  = f.label :description
+  = f.text_area :description
+  = f.label :completed
+  = f.check_box :completed
+  = f.submit "Save", class: "button success radius"

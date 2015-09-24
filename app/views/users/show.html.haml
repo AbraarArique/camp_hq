@@ -1,0 +1,22 @@
+- content_for :title do
+  %title #{@user.name} | CampHQ
+
+.row
+  .small-12.columns
+    %h1.text-center= @user.name
+  .small-12.columns
+    .user
+      %p
+        %b Email:
+        #{@user.email}
+      %p
+        %b About:
+        #{@user.about}
+      %p
+        %b Status:
+        #{@user.status}
+      %hr
+      %h3 Tasks:
+      - @user.tasks.each do |i|
+        .task
+          %p= link_to i.name, user_task_path(@user, i)
