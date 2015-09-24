@@ -2,21 +2,24 @@
   %title #{@user.name} | CampHQ
 
 .row
+  .small-12.columns.text-center
+    %h1= @user.name
+    = link_to 'Edit', edit_user_path(@user), class: 'button'
+    = link_to 'Delete', user_path(@user), method: :delete, class: 'button alert'
   .small-12.columns
-    %h1.text-center= @user.name
-  .small-12.columns
-    .user
-      %p
-        %b Email:
-        #{@user.email}
-      %p
-        %b About:
-        #{@user.about}
-      %p
-        %b Status:
-        #{@user.status}
-      %hr
-      %h3 Tasks:
-      - @user.tasks.each do |i|
-        .task
-          %p= link_to i.name, user_task_path(@user, i)
+    %p
+      %b Email:
+      #{@user.email}
+    %p
+      %b About:
+      #{@user.about}
+    %p
+      %b Status:
+      #{@user.status}
+    %hr
+    %h3 Tasks:
+    = form_for :user, url: assign_task_path(@user) do |f|
+      = f.select 'tasks', options_for_select(Task.all.map { |i| [i.name, i.id] })
+      = f.submit 'Assign A New Task', class: 'button'
+    - @user.tasks.each do |i|
+      %p= link_to i.name, task_path(i)

@@ -1,59 +1,53 @@
 class TasksController < ApplicationController
-  def index
-    @user = get_user(params[:user_id])
-    @tasks = @user.tasks
-  end
-
   def show
-    @user = get_user(params[:user_id])
-    @task = @user.tasks.find(params[:id])
+    @task = get_task(params[:id])
   end
 
   def new
-    @user = get_user(params[:user_id])
-    @task = @user.tasks.build
-    flash[:url] = user_tasks_path(@user)
+    @task = Task.new
   end
 
   def create
-    @user = get_user(params[:user_id])
-    @task = @user.tasks.build(task_params)
+    @task = Task.new(task_params)
     if @task.save
       redirect_to root_path
     else
-      flash.now[:url] = user_tasks_path(@user)
       render 'new'
     end
   end
 
   def edit
-    @user = get_user(params[:user_id])
-    @task = @user.tasks.find(params[:id])
-    flash[:url] = user_task_path(@user, @task)
+    @task = get_task(params[:id])
   end
 
   def update
-    @user = get_user(params[:user_id])
-    @task = @user.tasks.find(params[:id])
+    @task = get_task(params[:id])
     if @task.update(task_params)
-      redirect_to user_task_path(@user, @task)
+      redirect_to task_path(@task)
     else
-      flash.now[:url] = user_task_path(@user, @task)
       render 'edit'
     end
   end
 
   def destroy
-    @user = get_user(params[:user_id])
-    @task = @user.tasks.find(params[:id])
+    @task = get_task(params[:id])
     @task.destroy
     redirect_to root_path
   end
 
+  def users
+    @task = get_task(params[:id])
+    @task.users = @task.users.join User.find(params[:task][:users])
+    unless @task.save
+      flash[:error] = 'Sorry, something went wrong. Please try again.'
+    end
+    redirect_to task_path(@task)
+  end
+
   private
 
-    def get_user(id)
-      User.find(id)
+    def get_task(id)
+      Task.find(id)
     end
 
     def task_params

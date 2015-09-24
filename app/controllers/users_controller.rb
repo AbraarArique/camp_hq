@@ -1,8 +1,4 @@
 class UsersController < ApplicationController
-  def index
-    @users = User.all
-  end
-
   def show
     @user = get_user(params[:id])
   end
@@ -37,6 +33,15 @@ class UsersController < ApplicationController
     @user = get_user(params[:id])
     @user.destroy
     redirect_to root_path
+  end
+
+  def tasks
+    @user = get_user(params[:id])
+    @user.tasks = @user.tasks << Task.find(params[:user][:tasks])
+    unless @user.save
+      flash[:error] = 'Sorry, something went wrong. Please try again.'
+    end
+    redirect_to user_path(@user)
   end
 
   private
