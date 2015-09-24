@@ -65,11 +65,15 @@ p.muted {
   font-size: 13px;
 }
 
+h2.muted {
+  color: #AAAAAA;
+}
+
 .col-pad {
   padding: 15px 12px;
 }
 
-.main h2 {
+.main h2.main-h2 {
   margin: 10px 20px;
 
   & + hr {
@@ -88,4 +92,8 @@ table {
   .button {
     margin: 5px 0;
   }
+}
+
+form.model-form {
+  width: 25%;
 }

@@ -14,4 +14,17 @@
       %p
         Need more customization? Contact the
         %a{href: 'http://abraararique.com'} developer.
-    = yield
+    .row.full.collapse{data: {equalizer: true}}
+      .small-12.medium-2.columns.dash{data: {'equalizer-watch' => true}}
+        %h1= link_to 'Camp HQ', root_path
+        .col-pad
+          %p
+            Camp HQ is a web app for project managers to help track progress of tasks or assign users to tasks. This is the live free version so every feature is not available. If you want an application like this for yourself then you can
+            %a{href: 'http://abraararique.com'} contact me
+            and I'll create a production ready full-featured app like this for you or your company.
+          %p
+            Designed, Coded and Developed by:
+            %br
+            %a{href: 'http://abraararique.com'} Abraar Arique
+      .small-12.medium-10.columns.main{data: {'equalizer-watch' => true}}
+        = yield
