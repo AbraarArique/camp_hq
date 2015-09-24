@@ -1,6 +1,19 @@
 // Place all the styles related to the pages controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+h1, h2, h3 {
+  font-weight: 100;
+}
+
+a.button {
+  font-weight: 200;
+}
+
+p {
+  font-weight: 300;
+}
+
 .alert-box.sticky {
   margin-bottom: 0;
   padding: 12px;
@@ -12,5 +25,67 @@
 
   p {
     margin-bottom: 0;
+  }
+}
+
+.full {
+  max-width: 100%;
+}
+
+.dash {
+  background: #2B333D;
+
+  h1, h2, a {
+    color: #FFFFFF;
+  }
+
+  h1 {
+    font-weight: 200;
+    font-size: 40px;
+    padding: 15px 12px;
+    background: #333C47;
+    margin: 0;
+  }
+
+  a {
+    transition: all 0.3s ease-in-out 0s;
+
+    &:hover {
+      color: #CCCCCC;
+    }
+  }
+
+  p {
+    color: #888888;
+  }
+}
+
+p.muted {
+  color: #AAAAAA;
+  font-size: 13px;
+}
+
+.col-pad {
+  padding: 15px 12px;
+}
+
+.main h2 {
+  margin: 10px 20px;
+
+  & + hr {
+    margin-top: 0;
+  }
+}
+
+table {
+  border-radius: 10px;
+  width: 100%;
+
+  tr td {
+    padding: 0 10px;
+  }
+
+  .button {
+    margin: 5px 0;
   }
 }

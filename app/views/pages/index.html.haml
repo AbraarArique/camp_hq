@@ -1,17 +1,66 @@
 - content_for :title do
   %title Dashboard | Camp HQ
 
-.row
-  .small-12.columns
+.row.full.collapse{data: {equalizer: true}}
+  .small-12.medium-2.columns.dash{data: {'equalizer-watch' => true}}
+    %h1= link_to 'Camp HQ', root_path
+    .col-pad
+      %p
+        Camp HQ is a web app for project managers to help track progress of tasks or assign users to tasks. This is the live free version so every feature is not available. If you want an application like this for yourself then you can
+        %a{href: 'http://abraararique.com'} contact me
+        and I'll create a production ready full-featured app like this for you or your company.
+      %p
+        Designed, Coded and Developed by:
+        %br
+        %a{href: 'http://abraararique.com'} Abraar Arique
+  .small-12.medium-10.columns.main{data: {'equalizer-watch' => true}}
+    %h2 Dashboard
+    %hr
     %h1.text-center Users
-    - @users.each do |i|
-      %h3= link_to i.name, user_path(i)
-      %p= i.email
-      %p #{pluralize(i.tasks.count, 'Task')} Assigned
-    = link_to 'Add A New User', new_user_path, class: 'button'
-    %h1.text-center Tasks
-    - @tasks.each do |i|
-      %h3= link_to i.name, task_path(i)
-      %p= i.completed
-      %p #{pluralize(i.users.count, 'User')} Assigned
-    = link_to 'Add A New Task', new_task_path, class: 'button'
+    .col-pad
+      %table
+        %tr
+          %th ID
+          %th Name
+          %th Email
+          %th Tasks Assigned
+          %th Actions
+        - @users.each do |i|
+          %tr
+            %td= i.id
+            %td= link_to i.name, user_path(i)
+            %td= i.email
+            %td #{pluralize(i.tasks.count, 'Task')} Assigned
+            %td
+              = link_to 'Edit', edit_user_path(i), class: 'button success tiny radius'
+              = link_to 'Delete', user_path(i), method: :delete, class: 'button alert tiny radius'
+      .text-center
+        = link_to 'Add A New User', new_user_path, class: 'button'
+      %hr
+      %h1.text-center Tasks
+      %table
+        %tr
+          %th ID
+          %th Name
+          %th Status
+          %th Tasks Assigned
+          %th Actions
+        - @tasks.each do |i|
+          %tr
+            %td= i.id
+            %td= link_to i.name, task_path(i)
+            %td
+              - if i.completed
+                Complete
+              - else
+                Working
+            %td #{pluralize(i.users.count, 'User')} Assigned
+            %td
+              = link_to 'Edit', edit_task_path(i), class: 'button success tiny radius'
+              = link_to 'Delete', task_path(i), method: :delete, class: 'button alert tiny radius'
+      .text-center
+        = link_to 'Add A New Task', new_task_path, class: 'button'
+    %p.text-center.muted
+      Copyright &copy; 2015
+      %a{href: 'http://abraararique.com'} Abraar Arique.
+      All rights reserved.
