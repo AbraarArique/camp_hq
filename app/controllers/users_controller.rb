@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
   def show
     @user = get_user(params[:id])
+    @select_options = Task.all.map { |i| [i.name, i.id] }
   end
 
   def new
@@ -35,9 +36,18 @@ class UsersController < ApplicationController
     redirect_to root_path
   end
 
-  def tasks
+  def assign
     @user = get_user(params[:id])
     @user.tasks = @user.tasks << Task.find(params[:user][:tasks])
+    unless @user.save
+      flash[:error] = 'Sorry, something went wrong. Please try again.'
+    end
+    redirect_to user_path(@user)
+  end
+
+  def remove
+    @user = get_user(params[:user_id])
+    @user.tasks.delete Task.find(params[:id])
     unless @user.save
       flash[:error] = 'Sorry, something went wrong. Please try again.'
     end

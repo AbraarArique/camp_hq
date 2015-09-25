@@ -14,8 +14,11 @@
   = link_to 'Edit', edit_user_path(@user), class: 'button small'
   = link_to 'Delete', user_path(@user), method: :delete, class: 'button alert small'
   %h3 Assign a new Task to this User
+  - if flash[:error]
+    .alert-box.alert
+      %p= flash[:error]
   = form_for :user, url: assign_task_path(@user), html: {class: 'model-form'} do |f|
-    = f.select 'tasks', options_for_select(Task.all.map { |i| [i.name, i.id] })
+    = f.select 'tasks', options_for_select(@select_options)
     = f.submit 'Assign', class: 'button expand secondary'
   %hr
   %h2 Tasks:
@@ -24,6 +27,7 @@
       %th ID
       %th Name
       %th Status
+      %th Action
     - @user.tasks.each do |i|
       %tr
         %td= i.id
@@ -32,3 +36,4 @@
           %td.success Complete
         - else
           %td.warning Working
+        %td= link_to 'Remove this Task for this User', remove_task_path(@user, i), method: :delete, class: 'button alert tiny'

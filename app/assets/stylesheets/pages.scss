@@ -124,3 +124,31 @@ input[type='text'], input[type='email'], textarea {
     border-color: #008CBA;
   }
 }
+
+.check-box-alt {
+  border: 1px solid #999999;
+  border-radius: 5px;
+  padding: 15px;
+  max-width: 20%;
+  cursor: pointer;
+
+  p {
+    margin-bottom: 0;
+  }
+
+  &:hover {
+    border-color: #008CBA;
+  }
+}
+
+input[name='task[completed]'] {
+  display: none;
+}
+
+.check-box-main.alert-box {
+  width: 25%;
+
+  p {
+    margin-bottom: 0;
+  }
+}
