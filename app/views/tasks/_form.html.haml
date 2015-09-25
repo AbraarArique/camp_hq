@@ -1,15 +1,15 @@
 = form_for @task, url: flash[:url] do |f|
   - if @task.errors.any?
-    .alert-box.alert.radius
+    .alert-box.alert.radius{data: {alert: true}}
       %p= pluralize(@task.errors.count, 'Error')
       %ul
         - @task.errors.full_messages.each do |i|
           %li= i
-      %a.close{href: '#'} Close
+      %a.close{href: '#'} &times;
   = f.label :name
-  = f.text_field :name
+  = f.text_field :name, placeholder: 'Enter Task Name'
   = f.label :description
-  = f.text_area :description
-  = f.label :completed
+  = f.text_area :description, placeholder: 'Enter Task Description'
   = f.check_box :completed
+  %br
   = f.submit 'Save', class: 'button success radius'

@@ -1,8 +1,8 @@
 - content_for :title do
-  %title Edit Task - #{@task.name} | CampHQ
+  %title Edit Task | CampHQ
 
-.row
-  .small-12.columns
-    %h1.text-center Edit Task
-  .small-12.columns
-    = render 'form'
+%h2.main-h2 Fill Out The Form Bellow
+%hr
+%h1.text-center Edit Task
+.col-pad.col-form
+  = render 'form'

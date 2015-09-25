@@ -28,8 +28,7 @@
       %tr
         %td= i.id
         %td= link_to i.name, task_path(i)
-        %td
-          - if i.completed
-            Complete
-          - else
-            Working
+        - if i.completed
+          %td.success Complete
+        - else
+          %td.warning Working

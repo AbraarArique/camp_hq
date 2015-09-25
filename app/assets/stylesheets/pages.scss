@@ -97,3 +97,30 @@ table {
 form.model-form {
   width: 25%;
 }
+
+td.success {
+  background: #43AC6A;
+  color: #FFFFFF;
+  padding: 10px;
+}
+
+td.warning {
+  background: #F04124;
+  color: #FFFFFF;
+  padding: 10px;
+}
+
+.col-pad.col-form {
+  max-width: 75%;
+  margin: 0 auto;
+}
+
+input[type='text'], input[type='email'], textarea {
+  border-radius: 3px;
+  box-shadow: none;
+
+  &:focus {
+    background: #FFFFFF;
+    border-color: #008CBA;
+  }
+}

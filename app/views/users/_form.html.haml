@@ -1,17 +1,17 @@
 = form_for @user do |f|
   - if @user.errors.any?
-    .alert-box.alert.radius
+    .alert-box.alert.radius{data: {alert: true}}
       %p= pluralize(@user.errors.count, 'Error')
       %ul
         - @user.errors.full_messages.each do |i|
           %li= i
-      %a.close{href: '#'} Close
+      %a.close{href: '#'} &times;
   = f.label :name
-  = f.text_field :name
+  = f.text_field :name, placeholder: 'Enter User Name'
   = f.label :email
-  = f.email_field :email
+  = f.email_field :email, placeholder: 'Enter User Email Address'
   = f.label :about
-  = f.text_area :about
+  = f.text_area :about, placeholder: 'Say Something About The User'
   = f.label :status
-  = f.text_field :status
+  = f.text_field :status, placeholder: 'Enter User Status (e.g. working, online...)'
   = f.submit 'Save', class: 'button success radius'
