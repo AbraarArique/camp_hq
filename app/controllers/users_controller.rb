@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+  before_action :setup_sidekiq
+
   def show
     @user = get_user(params[:id])
     @select_options = Task.all.map { |i| [i.name, i.id] }

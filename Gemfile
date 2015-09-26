@@ -36,6 +36,9 @@ gem 'font-awesome-sass'
 # Use Unicorn as the app server
 # gem 'unicorn'
 
+# Use Sidekiq
+gem 'sidekiq'
+
 # Use Passenger
 gem 'passenger'
 
