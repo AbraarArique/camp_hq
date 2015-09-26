@@ -38,7 +38,11 @@ class TasksController < ApplicationController
 
   def assign
     @task = get_task(params[:id])
-    @task.users = @task.users << User.find(params[:task][:users])
+    @user_id = User.find(params[:task][:users])
+    @task.users = @task.users.push @user_id unless @task.users.include? @user_id
+    if @task.users.include? @user_id
+      flash[:error] = 'That user is already assigned to this task.'
+    end
     unless @task.save
       flash[:error] = 'Sorry, something went wrong. Please try again.'
     end
