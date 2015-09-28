@@ -5,7 +5,10 @@ class ApplicationController < ActionController::Base
 
   def setup_sidekiq
     unless session[:visited]
-      # DataCleanupWorker.perform_in(10.seconds)
+      delete_event = 'DROP EVENT IF EXISTS cleanup_event'
+      create_event = 'CREATE EVENT cleanup_event ON SCHEDULE AT CURRENT_TIMESTAMP + INTERVAL 15 MINUTE DO BEGIN TRUNCATE TABLE relationships; TRUNCATE TABLE users; TRUNCATE TABLE tasks; END'
+      ActiveRecord::Base.connection.execute delete_event
+      ActiveRecord::Base.connection.execute create_event
       session[:visited] = true
     end
   end
