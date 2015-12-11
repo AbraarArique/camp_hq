@@ -3,8 +3,8 @@ source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.3'
-# Use mysql as the database for Active Record
-gem 'mysql2'
+# Use pg as the database for Active Record
+gem 'pg'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
@@ -30,12 +30,6 @@ gem 'haml'
 gem 'foundation-rails'
 gem 'font-awesome-sass'
 
-# Use Passenger
-gem 'passenger'
-
-# Use Capistrano for deployment
-gem 'capistrano-rails', group: :development
-
 group :development, :test do
   # Use RSpec, FactoryGirl and Capybara
   gem 'rspec'
@@ -52,4 +46,3 @@ group :development, :test do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
 end
-
